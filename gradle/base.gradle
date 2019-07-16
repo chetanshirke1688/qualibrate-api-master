@@ -1,0 +1,60 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'jacoco'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'project-report'
+apply plugin: "com.palantir.docker"
+apply plugin: 'org.asciidoctor.convert'
+
+repositories {
+    mavenCentral()
+}
+
+task beanstalkZip(type: Zip) {
+    classifier 'beanstalk'
+
+    from(projectDir) {
+        include 'Dockerfile'
+        include 'run.sh'
+        include 'build/dependencies/**'
+        include "build/libs/${project.name}-*.jar"
+    }
+
+    from("$buildDir/tmp/ebextensions")
+}
+
+publishing {
+    if (System.env.CI_BUILD_REF_NAME == 'master' || System.env.CI_BUILD_REF_NAME == 'development') {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId "${artifactId}"
+
+                from components.java
+                artifact beanstalkZip
+            }
+        }
+    }
+
+    repositories {
+          mavenLocal()
+    }
+}
+
+// Test coverage
+test {
+    jacoco {
+        enabled = project.hasProperty("enableCodeCoverage")
+    }
+}
+
+// Eclipse
+task copyEclipseSettings(type: Copy) {
+    from("${rootProject.projectDir}/gradle/ide/eclipse") {
+        include "*.prefs"
+    }
+    into ".settings"
+}
+eclipseJdt.finalizedBy copyEclipseSettings

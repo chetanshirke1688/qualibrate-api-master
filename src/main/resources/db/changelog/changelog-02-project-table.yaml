@@ -1,0 +1,58 @@
+  databaseChangeLog:
+  - changeSet:
+      id: project-table-create
+      author: chetan.shirke1688@gmail.com
+      changes:
+      - createTable:
+          tableName: project
+          columns:
+          - column:
+              constraints:
+                primaryKey: true
+              name: id
+              type: BIGINT
+              autoIncrement: true
+          - column:
+              constraints:
+                nullable: false
+              name: name
+              type: VARCHAR(20)
+          - column:
+              name: description
+              type: LONGTEXT
+          - column:
+              name: code
+              type: VARCHAR(20)
+          - column:
+              name: icon
+              type: VARCHAR(20)
+          - column:
+              constraints:
+                nullable: false
+              name: active
+              type: boolean
+          - column:
+              name: user_id
+              type: BIGINT
+          - column:
+              constraints:
+                nullable: false
+              name: timestamp
+              type: DATETIME
+              defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: addForeignKeyConstraint-user-project
+      author: chetan.shirke1688@gmail.com
+      changes:
+       - addForeignKeyConstraint:
+           baseColumnNames: user_id
+           baseTableName: project
+           constraintName: fk_user_project
+           deferrable: false
+           initiallyDeferred: false
+           onDelete: CASCADE
+           onUpdate: CASCADE
+           referencedColumnNames: id
+           referencedTableName: user
+

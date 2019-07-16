@@ -1,0 +1,52 @@
+
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: "password"
+    validation-query: SELECT 1
+    test-on-borrow: true
+  jpa:
+    hibernate:
+      dialect: org.hivernate.dialect.MySQL5Dialect
+      ddl-auto: none
+    show-sql: true
+
+secure.admin.password: $2a$10$n22CbmnyNEKOoIPgZl9fEuOyQ5pdmc1lSKHqPACQa4k7rQQrIESCi
+
+---
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+  profiles: production
+liquibase:
+  contexts: production
+---
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+  profiles: local
+liquibase:
+  contexts: local
+---
+spring:
+  profiles: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:qualibrate;MODE=MySQL
+  jpa:
+    show-sql: false
+liquibase:
+  contexts: test
+---
+spring:
+  profiles: aws
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:qualibrate;MODE=MySQL
+  jpa:
+    show-sql: false
+liquibase:
+  contexts: test
