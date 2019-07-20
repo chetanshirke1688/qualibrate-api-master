@@ -19,14 +19,13 @@ buildscript {
   dependencies {
     classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
-    classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.1"
+    classpath 'se.transmode.gradle:gradle-docker:1.2' 
   }
 }
 
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
-    id "com.palantir.docker" version "0.22.1"
 }
 
 description = 'qualibrate-java-api'
@@ -80,6 +79,25 @@ dependencies {
   testRuntime 'com.h2database:h2:1.4.190'
 }
 
+apply plugin: 'docker'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Qualibrate Java API',
+                'Implementation-Version': version
+    }
+}
+
+task buildDocker (type:Docker, dependsOn: build) {
+	applicationName = jar.baseName
+	dockerfile = file('Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
+}
 
 test {
     outputs.dir snippetsDir
