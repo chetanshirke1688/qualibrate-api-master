@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 /**
  * Base exception
  * @author <a href="mailto:chetan.shirke1688@pb.com">Chetan Shirke</a>
- * 
+ *
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

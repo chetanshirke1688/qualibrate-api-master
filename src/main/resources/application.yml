@@ -13,14 +13,26 @@ spring:
       dialect: org.hivernate.dialect.MySQL5Dialect
       ddl-auto: none
     show-sql: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 250MB
 
-secure.admin.password: $2a$10$n22CbmnyNEKOoIPgZl9fEuOyQ5pdmc1lSKHqPACQa4k7rQQrIESCi
+file: 
+  uploadDir: uploads
+  scheme: LOCAL
+
+secure.admin.password: $2a$10$/zJC9bACEqHYWbvNO.WhBODK5CJIWBKxSiZVu/UJEgBWHSZ0dS2lW
 
 ---
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
   profiles: production
+uploads: 
+  directory: s3://test/uploads
 liquibase:
   contexts: production
 ---
@@ -30,6 +42,8 @@ spring:
   profiles: local
 liquibase:
   contexts: local
+uploads: 
+  directory: uploads
 ---
 spring:
   profiles: test

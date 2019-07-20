@@ -9,18 +9,18 @@
 buildscript {
 
     repositories {
-		mavenCentral()
-		maven {
-		  url 'https://plugins.gradle.org/m2/'
-		  url 'https://repo.spring.io/libs-snapshot'
+    mavenCentral()
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+      url 'https://repo.spring.io/libs-snapshot'
         }
-	}
+  }
 
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-		classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
-		classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.1"
-	}
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
+    classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.1"
+  }
 }
 
 plugins {
@@ -36,15 +36,15 @@ sourceCompatibility = javaVersion
 targetCompatibility = javaVersion
 
 tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+  options.encoding = 'UTF-8'
 }
 
 apply from: 'gradle/base.gradle'
 
 ext {
         snippetsDir = file('build/generated-snippets')
-		artifactId = "${rootProject.name}"
-		springBootVersion = "${springBootVersion}"
+        artifactId = "${rootProject.name}"
+        springBootVersion = "${springBootVersion}"
         buildNumber = System.env.CI_BUILD_ID ?: '0'
         buildId = System.env.CI_BUILD_REF ? System.env.CI_BUILD_REF[0..7] : System.properties['user.name']
 }
@@ -54,11 +54,11 @@ version = version + ".$buildNumber.$buildId"
 sourceCompatibility = 1.8
 
 repositories {
-		mavenCentral()
-		maven {
-		  url 'https://plugins.gradle.org/m2/'
-		  url 'https://repo.spring.io/libs-snapshot'
-        }
+    mavenCentral()
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+      url 'https://repo.spring.io/libs-snapshot'
+    }
 }
 
 
@@ -70,9 +70,8 @@ dependencies {
   compile 'org.springframework.retry:spring-retry:1.1.2.RELEASE'
   compile 'io.springfox:springfox-swagger2:2.4.0'
   compile 'io.springfox:springfox-swagger-ui:2.4.0'
-  compileOnly 'org.projectlombok:lombok:1.16.4'
-  annotationProcessor 'org.projectlombok:lombok:1.16.4'
-  compile 'org.projectlombok:lombok:1.16.4'
+  compileOnly 'org.projectlombok:lombok:1.18.8'
+  annotationProcessor 'org.projectlombok:lombok:1.18.8'
   compile 'org.liquibase:liquibase-core:3.6.3'
   compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
   compile "org.springframework.cloud:spring-cloud-aws-autoconfigure:$springCloudVersion"

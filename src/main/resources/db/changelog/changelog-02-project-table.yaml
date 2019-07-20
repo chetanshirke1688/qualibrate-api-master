@@ -43,7 +43,7 @@
 
   - changeSet:
       id: addForeignKeyConstraint-user-project
-      author: chetan.shirke1688@gmail.com
+      author: liquibase-docs
       changes:
        - addForeignKeyConstraint:
            baseColumnNames: user_id

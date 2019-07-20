@@ -23,13 +23,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.qualibrate.api.exceptions.ErrorCodes;
 import com.qualibrate.api.exceptions.InvalidRequestException;
-import com.qualibrate.api.exceptions.ResourceAlreadyExistsException;
 import com.qualibrate.api.exceptions.ResourceNotAvailableException;
 import com.qualibrate.api.exceptions.ResourceNotFoundException;
 import com.qualibrate.api.exceptions.UnAuthorizedException;
 import com.qualibrate.api.exceptions.UnSupportedFormatException;
-import com.qualibrate.api.exceptions.model.ErrorResponse;
 import com.qualibrate.api.exceptions.model.Error;
+import com.qualibrate.api.exceptions.model.ErrorResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  * API.
  *
  * @author <a href="mailto:chetan.shirke1688@gmail.com">Chetan Shirke</a>
- * 
+ *
  */
 @Slf4j
 @ControllerAdvice(basePackages = "com.qualibrate.api")
@@ -65,7 +64,8 @@ public class ExceptionHandlerController {
     @ResponseBody
     public ErrorResponse handleException(ResourceNotAvailableException notAvailableException) {
         log.error("Unexpected exception", notAvailableException);
-        String errorCode = notAvailableException.getCode() == null ? ErrorCodes.INTERNAL_SERVER_ERROR : notAvailableException.getCode();
+        String errorCode = notAvailableException.getCode() == null
+              ? ErrorCodes.INTERNAL_SERVER_ERROR : notAvailableException.getCode();
         return buildErrorResponse(errorCode, notAvailableException.getMessage());
     }
 
@@ -81,16 +81,9 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public ErrorResponse handleNotFoundException(ResourceNotFoundException notFoundException) {
-        String errorCode = notFoundException.getCode() == null ? ErrorCodes.NOT_FOUND_EXCEPTION : notFoundException.getCode();
+        String errorCode = notFoundException.getCode() == null
+                 ? ErrorCodes.NOT_FOUND_EXCEPTION : notFoundException.getCode();
         return buildErrorResponse(errorCode, notFoundException.getMessage());
-    }
-
-    @ExceptionHandler(value = ResourceAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    @ResponseBody
-    public ErrorResponse handleNotFoundException(ResourceAlreadyExistsException resourceAlreadyExistsException) {
-        String errorCode = resourceAlreadyExistsException.getCode() == null ? ErrorCodes.CONFLICT : resourceAlreadyExistsException.getCode();
-        return buildErrorResponse(errorCode, resourceAlreadyExistsException.getMessage());
     }
 
     @ExceptionHandler(value = ValidationException.class)
@@ -104,7 +97,8 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     public ErrorResponse handleAccessDeniedException(UnAuthorizedException accessDeniedException) {
-        String errorCode = accessDeniedException.getCode() == null ? ErrorCodes.UNAUTHOIRZED : accessDeniedException.getCode();
+        String errorCode = accessDeniedException.getCode() == null
+              ? ErrorCodes.UNAUTHOIRZED : accessDeniedException.getCode();
         return buildErrorResponse(errorCode, accessDeniedException.getMessage());
     }
 
@@ -128,7 +122,8 @@ public class ExceptionHandlerController {
     public ErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
         Throwable rootCause = exception.getRootCause();
         if (rootCause instanceof JsonProcessingException) {
-            return buildErrorResponse(ErrorCodes.INPUT_NOT_READABLE, ((JsonProcessingException) rootCause).getOriginalMessage());
+            return buildErrorResponse(ErrorCodes.INPUT_NOT_READABLE,
+                  ((JsonProcessingException) rootCause).getOriginalMessage());
         } else {
             return buildErrorResponse(ErrorCodes.INPUT_NOT_READABLE, HttpStatus.BAD_REQUEST.getReasonPhrase());
         }
@@ -178,7 +173,7 @@ public class ExceptionHandlerController {
     private ErrorResponse buildErrorResponse(String code, ConstraintViolationException validationException) {
         List<Error> errors = new ArrayList<>();
         for (@SuppressWarnings("rawtypes")
-        ConstraintViolation constraintViolation : validationException.getConstraintViolations()) {
+            ConstraintViolation constraintViolation : validationException.getConstraintViolations()) {
             Error error = new Error();
             error.setMessage(constraintViolation.getMessage());
             error.setCode(code);

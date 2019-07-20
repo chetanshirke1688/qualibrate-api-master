@@ -1,13 +1,11 @@
 apply plugin: 'java'
-//apply plugin: 'checkstyle'
+apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'jacoco'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'project-report'
-apply plugin: "com.palantir.docker"
-apply plugin: 'org.asciidoctor.convert'
 
 repositories {
     mavenCentral()
@@ -27,7 +25,7 @@ task beanstalkZip(type: Zip) {
 }
 
 publishing {
-    if (System.env.CI_BUILD_REF_NAME == 'master' || System.env.CI_BUILD_REF_NAME == 'development') {
+    if (System.env.CI_BUILD_REF_NAME == 'master') {
         publications {
             mavenJava(MavenPublication) {
                 artifactId "${artifactId}"
@@ -39,7 +37,29 @@ publishing {
     }
 
     repositories {
-          mavenLocal()
+       mavenCentral()
+    }
+}
+
+
+// Checkstyle
+checkstyle {
+    configFile = 'checkstyle.xml' as File
+    toolVersion = '6.10.1'
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    html.destination rootProject.file("build/reports/checkstyle.html")
+}
+}
+
+// Findbugs
+tasks.withType(FindBugs) {
+    excludeFilter = file("$rootDir/gradle/findbugs-exclude.xml")
+    reports {
+        xml.enabled = false;
+        html.enabled = true;
     }
 }
 

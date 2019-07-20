@@ -1,0 +1,15 @@
+<FindBugsFilter>
+    <!-- lombok doesn't have a nice way to resolve these low level bugs, so ignore them for now -->
+    <Match>
+        <!-- http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP -->
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+    <Match>
+        <!-- http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP2 -->
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <!-- http://findbugs.sourceforge.net/bugDescriptions.html#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE -->
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+</FindBugsFilter>
