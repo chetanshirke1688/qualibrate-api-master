@@ -13,7 +13,7 @@ buildscript {
     maven {
       url 'https://plugins.gradle.org/m2/'
       url 'https://repo.spring.io/libs-snapshot'
-        }
+     }
   }
 
   dependencies {
@@ -27,6 +27,8 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
 }
+
+apply plugin: 'docker'
 
 description = 'qualibrate-java-api'
 
@@ -49,7 +51,7 @@ ext {
 }
 
 group = 'com.cs'
-version = version + ".$buildNumber.$buildId"
+version = version + ".$buildNumber"
 sourceCompatibility = 1.8
 
 repositories {
@@ -78,8 +80,6 @@ dependencies {
   testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   testRuntime 'com.h2database:h2:1.4.190'
 }
-
-apply plugin: 'docker'
 
 jar {
     manifest {
