@@ -1,0 +1,13 @@
+.deploy-config
+.ebextensions
+.gradle
+.idea
+build/classes
+build/dependency-cache
+build/distributions
+build/reports
+build/resources
+build/test-results
+build/tmp
+gradle
+src
