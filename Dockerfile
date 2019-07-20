@@ -1,15 +1,5 @@
-FROM python:3.6.3
-
-EXPOSE 5000
-WORKDIR /usr/src/app
-
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-ARG FLASK_ENV
-ENV FLASK_ENVIRONMENT=${FLASK_ENV:-production}
-RUN echo $FLASK_ENVIRONMENT
-
-COPY . .
-
-CMD [ "gunicorn", "-w", "4", "app:APP", "--worker-class", "gevent", "--bind", "0.0.0.0:5000", "--pid", "/tmp/gunicorn.pid" ]
+FROM java:8u72-jre
+COPY build/libs/qualibrate-api-challange-1.0.0.jar /dockerapi/qualibrate-api-challange-1.0.0.jar
+ENTRYPOINT ["java"]
+CMD ["-jar", "/dockerapi/qualibrate-api-challange-1.0.0.jar"]
+EXPOSE 8080
