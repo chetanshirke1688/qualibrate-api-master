@@ -15,8 +15,8 @@ deploy:
   skip_cleanup: true
   region: "us-east-1"  
   app: "qualibrate-api"
-  env: "qualibrate-api-qa"
-  bucket_name: "elasticbeanstalk-us-east-1-363177061610"
+  env: "qa"
+  bucket_name: "qualibrate-api-ebs-us-east-1-363177061610"
   zip_file: 'build/libs/qualibrate-api-challange-1.0.0.jar'
   on:
     branch: master
