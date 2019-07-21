@@ -65,6 +65,7 @@ repositories {
 
 
 dependencies {
+  compile 'org.apache.httpcomponents:httpclient:4.5.9'
   compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
   compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
   compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
@@ -80,6 +81,8 @@ dependencies {
   runtime 'mysql:mysql-connector-java:8.0.11'
   testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   testRuntime 'com.h2database:h2:1.4.190'
+  testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE'
+  testCompile 'org.springframework.restdocs:spring-restdocs-core:2.0.3.RELEASE'
   compile 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.7'
 }
 
