@@ -7,8 +7,6 @@
     - include:
         file: db/changelog/changelog-03-create-table-files.yaml
     - include:
-        file: db/changelog/changelog-04-create-table-flows.yaml
-    - include:
         file: db/changelog/changelog-06-userdata-load-for-test.yaml
     - include:
         file: db/changelog/changelog-05-projectdata-load-for-test.yaml

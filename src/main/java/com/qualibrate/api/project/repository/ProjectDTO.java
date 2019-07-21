@@ -23,11 +23,23 @@ public class ProjectDTO extends Project implements Dto {
 
     private Long userId;
 
+    private String name;
+
+    private String description;
+
+    private String code;
+
+    private boolean active;
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
+        result = prime * result + (active ? 1231 : 1237);
+        result = prime * result + ((code == null) ? 0 : code.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((icon == null) ? 0 : icon.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
         result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         return result;
@@ -42,10 +54,27 @@ public class ProjectDTO extends Project implements Dto {
         if (getClass() != obj.getClass())
             return false;
         ProjectDTO other = (ProjectDTO) obj;
+        if (active != other.active)
+            return false;
+        if (code == null) {
+            if (other.code != null)
+                return false;
+        } else if (!code.equals(other.code))
+            return false;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
         if (icon == null) {
             if (other.icon != null)
                 return false;
         } else if (!icon.equals(other.icon))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
             return false;
         if (timestamp == null) {
             if (other.timestamp != null)
