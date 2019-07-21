@@ -21,13 +21,16 @@ buildscript {
     classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
     classpath 'se.transmode.gradle:gradle-docker:1.2' 
   }
+  apply from: 'gradle/base.gradle'
 }
 
 plugins {
-    // Apply the java-library plugin to add support for Java Library
-    id 'java-library'
+  id 'org.asciidoctor.convert' version '1.5.3'
 }
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
 apply plugin: 'docker'
 
 description = 'qualibrate-java-api'
@@ -39,8 +42,6 @@ targetCompatibility = javaVersion
 tasks.withType(JavaCompile) {
   options.encoding = 'UTF-8'
 }
-
-apply from: 'gradle/base.gradle'
 
 ext {
         snippetsDir = file('build/generated-snippets')
@@ -79,12 +80,13 @@ dependencies {
   runtime 'mysql:mysql-connector-java:8.0.11'
   testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   testRuntime 'com.h2database:h2:1.4.190'
+  compile 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.7'
 }
 
 jar {
-    manifest {
-        attributes 'Implementation-Title': 'Qualibrate Java API',
-                'Implementation-Version': version
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}") {
+        into 'public/docs'
     }
 }
 
