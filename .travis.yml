@@ -12,7 +12,7 @@ deploy:
   provider: elasticbeanstalk
   access_key_id: $ACCESS_KEYID
   secret_access_key: $SECRET_ACCESSKEY
-  skip_cleanup: false
+  skip_cleanup: true
   region: "ap-south-1"  
   app: "qualibrate-api-qa"
   env: "qualibrate-api-qa"
