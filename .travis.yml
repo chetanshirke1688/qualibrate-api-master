@@ -12,11 +12,11 @@ deploy:
   provider: elasticbeanstalk
   access_key_id: $ACCESS_KEYID
   secret_access_key: $SECRET_ACCESSKEY
-  skip_cleanup: true
-  region: "us-east-1"  
+  skip_cleanup: false
+  region: "ap-south-1"  
   app: "qualibrate-api-qa"
   env: "qualibrate-api-qa"
-  bucket_name: "qualibrate-api-qa-ebs-us-east-1-363177061610"
+  bucket_name: "qualibrate-api-qa-ebs-ap-south-1-363177061610"
   zip_file: 'build/libs/qualibrate-api-challange-1.0.0.jar'
   on:
     branch: master
