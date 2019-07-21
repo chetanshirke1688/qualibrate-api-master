@@ -1,0 +1,19 @@
+branch-defaults:
+  master:
+    environment: qualibrate-api-qa
+deploy:
+  artifact: build/libs/qualibrate-api-challange-1.0.0.jar
+global:
+  application_name: qualibrate-api-qa
+  branch: null
+  default_ec2_keyname: chetanshirke1688
+  default_platform: Java 8
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: git
+  workspace_type: Application
