@@ -1,7 +1,10 @@
 language: java
 jdk:
  - oraclejdk8
-     
+
+script:
+ - chmod +x ./gradlew build connectedCheck
+ 
 deploy:
   provider: elasticbeanstalk
   access_key_id: $ACCESS_KEYID
