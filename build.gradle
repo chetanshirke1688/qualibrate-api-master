@@ -91,11 +91,15 @@ jar {
     from("${asciidoctor.outputDir}") {
         into 'public/docs'
     }
+	manifest {
+        attributes 'Implementation-Title': 'Qualibrate Java API',
+                'Implementation-Version': version
+    }
 }
 
 task buildDocker (type:Docker, dependsOn: build) {
 	applicationName = jar.baseName
-	dockerfile = file('Dockerfile')
+	dockerfile = file('localDockerfile')
 	doFirst {
 		copy {
 			from jar
@@ -111,3 +115,6 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+
+task resourceTask(dependsOn: [beanstalkZip, buildDocker]) {}
+processResources.finalizedBy resourceTask

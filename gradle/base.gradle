@@ -11,36 +11,17 @@ repositories {
     mavenCentral()
 }
 
-task beanstalkZip(type: Zip) {
+task beanstalkZip(type: Zip, dependsOn: build) {
     classifier 'beanstalk'
 
-    from(projectDir) {
+     from(projectDir) {
+        include '.elasticbeanstalk/**'
         include 'Dockerfile'
         include 'run.sh'
-        include 'build/dependencies/**'
         include "build/libs/${project.name}-*.jar"
     }
-
     from("$buildDir/tmp/ebextensions")
 }
-
-publishing {
-    if (System.env.CI_BUILD_REF_NAME == 'master') {
-        publications {
-            mavenJava(MavenPublication) {
-                artifactId "${artifactId}"
-
-                from components.java
-                artifact beanstalkZip
-            }
-        }
-    }
-
-    repositories {
-       mavenCentral()
-    }
-}
-
 
 // Checkstyle
 checkstyle {
