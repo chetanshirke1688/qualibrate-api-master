@@ -39,7 +39,7 @@
        - addForeignKeyConstraint:
            baseColumnNames: user_id
            baseTableName: files
-           constraintName: fk_files_project
+           constraintName: fk_user_files
            deferrable: false
            initiallyDeferred: false
            onDelete: CASCADE
