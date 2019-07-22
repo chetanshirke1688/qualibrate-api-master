@@ -56,3 +56,11 @@
            referencedColumnNames: id
            referencedTableName: user
 
+  - changeSet:
+      id: project-table-add-unique-constraint
+      author: chetan.shirke1688@gmail.com
+      changes:
+        - addUniqueConstraint:
+            columnNames: code
+            constraintName: unique-code-constraint
+            tableName: project
