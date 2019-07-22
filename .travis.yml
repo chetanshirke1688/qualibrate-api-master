@@ -15,7 +15,7 @@ deploy:
   skip_cleanup: true
   region: "ap-south-1"  
   app: "qualibrate-api-qa"
-  env: "qualibrate-api-qa"
+  env: qualibrate-api-qa
   bucket_name: "elasticbeanstalk-ap-south-1-363177061610"
   zip_file: 'build/distributions/qualibrate-api-challange-1.0.0-beanstalk.zip'
   on:
