@@ -1,6 +1,7 @@
 package com.qualibrate.api.file.service;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,6 +11,8 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +27,7 @@ import com.qualibrate.api.commons.transformer.EntityToDtoTransformer;
 import com.qualibrate.api.exceptions.ErrorCodes;
 import com.qualibrate.api.exceptions.InvalidRequestException;
 import com.qualibrate.api.exceptions.ResourceNotAvailableException;
+import com.qualibrate.api.exceptions.ResourceNotFoundException;
 import com.qualibrate.api.exceptions.UnSupportedFormatException;
 import com.qualibrate.api.file.repository.File;
 import com.qualibrate.api.file.repository.FileDTO;
@@ -67,6 +71,17 @@ public class FileService {
                 ErrorCodes.ProjectEntityAPIErrors.PROJECTENTITY_ALREADY_EXISTS);
         }
         return fileEntityToDtoConverter.apply(saved);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @Transactional
+    public FileRecord getFile(File file) {
+        FileRecord saved;
+        saved = fileRepo.getOne(file.getId());
+        if (saved == null) {
+            throw new ResourceNotFoundException("File details does not exists.", ErrorCodes.NOT_FOUND_EXCEPTION);
+        }
+        return saved;
     }
 
     public FileDTO uploadAndSaveLogs(@Valid MultipartFile file, long userId) {
@@ -130,5 +145,27 @@ public class FileService {
             return fileDTO;
         }
         return null;
+    }
+
+    /**
+     * Download file content.
+     * @param fileDetails
+     * @return
+     */
+    public Resource loadFileAsResource(FileRecord fileDetails) {
+        try {
+            Path fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+                    .toAbsolutePath().normalize();
+            Path filePath = fileStorageLocation.resolve(fileDetails.getName()).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+            if (resource.exists()) {
+                return resource;
+            } else {
+                throw new ResourceNotFoundException("File not found ", ErrorCodes.NOT_FOUND_EXCEPTION);
+            }
+        } catch (MalformedURLException ex) {
+            throw new ResourceNotFoundException("File not found " + ex.getLocalizedMessage(),
+            ErrorCodes.NOT_FOUND_EXCEPTION);
+        }
     }
 }
