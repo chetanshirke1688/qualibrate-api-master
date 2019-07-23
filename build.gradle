@@ -110,6 +110,11 @@ task buildDocker (type:Docker, dependsOn: build) {
 	}
 }
 
+task copyJavaAgent(type: Copy) {
+  from "appdynamics"
+  into "build/dependencies"
+}
+
 test {
     outputs.dir snippetsDir
     
@@ -118,5 +123,5 @@ test {
     }
 }
 
-task resourceTask(dependsOn: [beanstalkZip, buildDocker]) {}
+task resourceTask(dependsOn: [copyJavaAgent,beanstalkZip, buildDocker]) {}
 processResources.finalizedBy resourceTask
