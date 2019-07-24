@@ -2,7 +2,6 @@ FROM java:8u72-jre
 
 EXPOSE 8080
 ENV SPRING_PROFILES_ACTIVE=test
-ADD build/dependencies/javaagent.jar /opt/appdynamics/app-agent
 COPY run.sh /run.sh
 RUN ["chmod", "+x", "/run.sh"]
 COPY build/libs/qualibrate-api-challange*.jar /opt/app/server.jar

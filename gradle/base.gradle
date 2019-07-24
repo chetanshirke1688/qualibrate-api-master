@@ -17,6 +17,7 @@ task beanstalkZip(type: Zip, dependsOn: build) {
      from(projectDir) {
         include '.elasticbeanstalk/**'
         include 'Dockerfile'
+        include 'build/dependencies/**'
         include 'run.sh'
         include "build/libs/${project.name}-*.jar"
     }
