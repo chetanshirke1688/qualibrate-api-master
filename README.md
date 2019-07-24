@@ -30,21 +30,21 @@ This project is implementation of python based qualibrate APIs. This project cov
 <li>Gradle plugins:
 <ul>
 <li>Checkstyle: Plugin is used to maintain code formatting and validate     syntax such as CamelCase, spaces.</li>
-<li>Doker: Plugin is used to create docker image of spring boot application.</li>
+<li>Docker: Plugin is used to create docker image of spring boot application.</li>
 <li>FindBugs: Plugin is used to detect errors in code such as memory leaks, null references, possible null pointer exceptions etc.</li>
 <li>Zip: Plugin is used to build beanstalk zip file/build packages.</li>
 </ul>
 </li>
 </ul>
 <h2 id="high-level-design-approach">High Level Design Approach</h2>
-<p>APIs are built by considering following requirements.</p>
+<p>APIs are developed by considering following requirements.</p>
 <ul>
-<li><strong>Lines of code and template based design</strong> :  Reflection and java 8 streaming apis are heavily used in code to generalize things and to reduce lines of code. EntityToDTO converter is built using java reflection and is generalized to convert entity based on type. This is template based design used to generalize common behavior across application entities.</li>
+<li><strong>Lines of code and template based design</strong> :  Reflection and java 8 streaming apis are heavily used in code to generalize things and to reduce lines of code. e.g. EntityToDTO converter is developed using java reflection and is generalized to convert entity based on type. Template based design approach is used to generalize common behavior across application entities.</li>
 <li><strong>Security</strong>: Api security is must. Added basic authentication support in API and configured firewall in application. To maintain security one can configure firewall rules to restrict URL access by configuring URL pattern rules in firewall. Role based access is maintained using Spring boot role based authentication and authorization mechanism at method level.</li>
-<li><strong>CORS</strong> :  Cross Origin and Resource Sharing feature is configured for globally (all controllers and methods). To configure domain please specify allowed.origin environment variable while booting application. Please refer to <strong>Environment Variables</strong> section for more details.</li>
-<li><strong>CICD</strong> : Travis is used to build application and deploy on beanstalk.</li>
-<li><strong>Application Monitoring</strong> : Portainer is used to monitor docker image.</li>
-<li><strong>Large File Upload Support</strong>: Multipart upload is enabled and Input streams are used to handle to support large file upload. File upload size can be managed using “file-size-threshold” in KB (to manage multiparts) and maz-file-size (in MB) and max-request-size (in MB).</li>
+<li><strong>CORS</strong> :  CORS (Cross Origin and Resource Sharing) feature is configured for globally (all controllers and methods). To configure domain please specify allowed.origin environment variable while booting application. Please refer to <strong>Environment Variables</strong> section for more details.</li>
+<li><strong>CICD</strong> : Travis is used to build application and deploy it on beanstalk.</li>
+<li><strong>Application Monitoring</strong> : Portainer is used to monitor docker container.</li>
+<li><strong>Large File Upload Support</strong>: Multipart upload is enabled and Java Input stream is used to read data in chunks to support large file upload. File upload size can be managed using “file-size-threshold” (in KB) (to manage multiparts) and max-file-size (in MB) and max-request-size (in MB) environment variables.</li>
 <li><strong>Error code standardization</strong> : API responses and error codes are standardized across application by considering various possible failure scenarios. Please refer to <strong>Error Code details</strong> section for more details.</li>
 </ul>
 <h2 id="environment-variables">Environment Variables</h2>
