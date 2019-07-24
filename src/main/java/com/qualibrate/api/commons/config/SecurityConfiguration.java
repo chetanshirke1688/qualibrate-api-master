@@ -1,5 +1,8 @@
 package com.qualibrate.api.commons.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -92,8 +95,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public HttpFirewall allowUrlEncodedPercentHttpFirewall() {
+        List<String> httpMethods = new ArrayList<String>();
+        httpMethods.add("OPTIONS");
+        httpMethods.add("HEAD");
+        httpMethods.add("GET");
+        httpMethods.add("PUT");
+        httpMethods.add("POST");
+        httpMethods.add("DELETE");
+        httpMethods.add("PATCH");
         StrictHttpFirewall firewall = new StrictHttpFirewall();
         firewall.setAllowUrlEncodedPercent(true);
+        firewall.setAllowedHttpMethods(httpMethods);
+        firewall.setAllowSemicolon(true);
+        firewall.setAllowUrlEncodedPeriod(true);
+        firewall.setAllowUrlEncodedSlash(true);
+        firewall.setUnsafeAllowAnyHttpMethod(true);
         return firewall;
     }
 }
