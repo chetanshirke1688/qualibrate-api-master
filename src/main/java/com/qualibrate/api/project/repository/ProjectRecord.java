@@ -53,7 +53,6 @@ public class ProjectRecord implements com.qualibrate.api.commons.transformer.Ent
         this.timestamp = new Date();
         this.active = project.isActive();
         this.code = project.getCode();
-        this.id = project.getId();
     }
 
     public ProjectRecord(ProjectDTO project) {
