@@ -1,0 +1,586 @@
+{
+	"id": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+	"name": "qualibrate-api",
+	"description": "Collection for qualibrate api. Collection covers following 3 entities.\n1. project\n2. user\n3. files",
+	"order": [],
+	"folders": [
+		{
+			"name": "files",
+			"description": "",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"order": [
+				"f4ff0c54-9322-b5ee-3419-234777d7e4d6",
+				"ac8f9b90-2cf7-6444-f5f6-0ea48dd9d3b0"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "a561b9b5-5e8c-ddc9-6acf-cd23857b0291"
+		},
+		{
+			"name": "projects",
+			"description": "Apis associated with project entity",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"order": [
+				"4aef445a-95c0-d0b8-439d-23d7e97aa802",
+				"7e4d974a-2a5c-57cf-6483-8cd5b5dc52f8"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "fa259fa5-34e0-95f9-040b-45039b4ab6fe"
+		},
+		{
+			"name": "user",
+			"description": "APIs associated with user entity",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"order": [
+				"cb4df851-4ca2-307d-fff8-8a45c254678d",
+				"58dce1bf-7d61-80d4-ce6c-533e33678e5d",
+				"1d58444b-54f0-c03c-f513-15883fd20587",
+				"94346372-325d-06b1-d728-902998b595ac",
+				"ebe1a971-b9fc-e190-01d3-11c311eb8152",
+				"b637462d-b151-6938-059d-0908e37fd3fa",
+				"e5452743-3929-e6ee-7074-28d399caaab1"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "f49b218f-4bdd-7754-b4c6-090b37037ed6"
+		}
+	],
+	"folders_order": [
+		"f49b218f-4bdd-7754-b4c6-090b37037ed6",
+		"fa259fa5-34e0-95f9-040b-45039b4ab6fe",
+		"a561b9b5-5e8c-ddc9-6acf-cd23857b0291"
+	],
+	"timestamp": 1563932520472,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "1d58444b-54f0-c03c-f513-15883fd20587",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user/26",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": null,
+			"dataMode": "params",
+			"name": "DELETE user",
+			"description": "Delete a user from system. If user does not exist API returns User not found error message\n\n{\n  \"errors\": [\n    {\n      \"message\": \"User not found\",\n      \"code\": \"NF_0001\"\n    }\n  ]\n}",
+			"descriptionFormat": "html",
+			"time": 1563933062089,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6"
+		},
+		{
+			"id": "4aef445a-95c0-d0b8-439d-23d7e97aa802",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/project?page=0&size=10&sort=desc",
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "size",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sort",
+					"value": "desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Get Paginated Project Details.",
+			"description": "Get paginated Project Details.",
+			"descriptionFormat": "html",
+			"time": 1563993847870,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "fa259fa5-34e0-95f9-040b-45039b4ab6fe",
+			"rawModeData": ""
+		},
+		{
+			"id": "58dce1bf-7d61-80d4-ce6c-533e33678e5d",
+			"headers": "Origin: localhost:8080\nContent-Type: application/json\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "CREATE user",
+			"description": "Creates user. In case of duplicate email id api returns below sample response.\n{\n  \"errors\": [\n    {\n      \"message\": \"Integrity violation. user with email {EMAIL}} already exists.\",\n      \"code\": \"VE_0001\"\n    }\n  ]\n}",
+			"descriptionFormat": "html",
+			"time": 1563932951574,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"isFromCollection": true,
+			"collectionRequestId": "58dce1bf-7d61-80d4-ce6c-533e33678e5d",
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6",
+			"rawModeData": "{\r\n  \"email\": \"chetan.shirke@yahoo.com\",\r\n  \"firstName\": \"Chetan\",\r\n  \"lastName\": \"Shirke\"\r\n}"
+		},
+		{
+			"id": "7e4d974a-2a5c-57cf-6483-8cd5b5dc52f8",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/project",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "CREATE Project",
+			"description": "Create Project",
+			"descriptionFormat": "html",
+			"time": 1563993916043,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "fa259fa5-34e0-95f9-040b-45039b4ab6fe",
+			"rawModeData": "{\r\n  \"active\": \"true\",\r\n  \"code\": \"TEST-001\",\r\n  \"description\": \"Automation suite for release 101-B\",\r\n  \"id\": \"1\",\r\n  \"name\": \"CRM Project\"\r\n}"
+		},
+		{
+			"id": "94346372-325d-06b1-d728-902998b595ac",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user?page=0&size=10",
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "size",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": null,
+			"dataMode": "params",
+			"name": "GET user List(Paginated)",
+			"description": "Get paginated user details.",
+			"descriptionFormat": "html",
+			"time": 1563993336627,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6"
+		},
+		{
+			"id": "ac8f9b90-2cf7-6444-f5f6-0ea48dd9d3b0",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": null,
+			"dataMode": "params",
+			"name": "Upload User specific file",
+			"description": "Upload file",
+			"descriptionFormat": "html",
+			"time": 1563994418088,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "a561b9b5-5e8c-ddc9-6acf-cd23857b0291"
+		},
+		{
+			"id": "b637462d-b151-6938-059d-0908e37fd3fa",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user/1/project",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GET User Specific Projects",
+			"description": "Get projects associated with user.",
+			"descriptionFormat": "html",
+			"time": 1563993638071,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6",
+			"rawModeData": "{\r\n  \"activatedAt\": \"2019-07-24T18:36:50.144Z\",\r\n  \"active\": true,\r\n  \"email\": \"jsmith@gmail.com\",\r\n  \"firstName\": \"John\",\r\n  \"id\": 1,\r\n  \"lastName\": \"Smith\",\r\n  \"loginAt\": \"2019-07-24T18:36:50.144Z\",\r\n  \"logoutAt\": \"2019-07-24T18:36:50.144Z\",\r\n  \"provider\": \"string\",\r\n  \"timestamp\": \"2019-07-24T18:36:50.144Z\",\r\n  \"uid\": \"string\"\r\n}"
+		},
+		{
+			"id": "cb4df851-4ca2-307d-fff8-8a45c254678d",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user?page=0&size=10&sort=desc",
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "size",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sort",
+					"value": "desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": null,
+			"dataMode": "params",
+			"name": "GET user",
+			"description": "Get user details.",
+			"descriptionFormat": "html",
+			"time": 1563932654071,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6"
+		},
+		{
+			"id": "e5452743-3929-e6ee-7074-28d399caaab1",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user/1/project/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Assign Project to the user",
+			"description": "Assign project to User.",
+			"descriptionFormat": "html",
+			"time": 1563993773083,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6",
+			"rawModeData": ""
+		},
+		{
+			"id": "ebe1a971-b9fc-e190-01d3-11c311eb8152",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/user/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Update User",
+			"description": "Update user details",
+			"descriptionFormat": "html",
+			"time": 1563993565415,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f49b218f-4bdd-7754-b4c6-090b37037ed6",
+			"rawModeData": "{\r\n  \"activatedAt\": \"2019-07-24T18:36:50.144Z\",\r\n  \"active\": true,\r\n  \"email\": \"jsmith@gmail.com\",\r\n  \"firstName\": \"John\",\r\n  \"id\": 1,\r\n  \"lastName\": \"Smith\",\r\n  \"loginAt\": \"2019-07-24T18:36:50.144Z\",\r\n  \"logoutAt\": \"2019-07-24T18:36:50.144Z\",\r\n  \"provider\": \"string\",\r\n  \"timestamp\": \"2019-07-24T18:36:50.144Z\",\r\n  \"uid\": \"string\"\r\n}"
+		},
+		{
+			"id": "f4ff0c54-9322-b5ee-3419-234777d7e4d6",
+			"headers": "Origin: localhost:8080\nAuthorization: Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Origin",
+					"value": "localhost:8080",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic YWRtaW46cXVhbGlicmF0ZUFkbWlu",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://qualibrateapiqa-env.inugppj2zq.ap-south-1.elasticbeanstalk.com/api/v1/files?page=0&size=10&sort=desc",
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "size",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sort",
+					"value": "desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ec7aeee3-8f8e-0f21-e097-53a7c054937d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GET Files (Paginated)",
+			"description": "Get files",
+			"descriptionFormat": "html",
+			"time": 1563993989071,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "a561b9b5-5e8c-ddc9-6acf-cd23857b0291",
+			"rawModeData": "{\r\n  \"active\": \"true\",\r\n  \"code\": \"TEST-001\",\r\n  \"description\": \"Automation suite for release 101-B\",\r\n  \"id\": \"1\",\r\n  \"name\": \"CRM Project\"\r\n}"
+		}
+	]
+}
