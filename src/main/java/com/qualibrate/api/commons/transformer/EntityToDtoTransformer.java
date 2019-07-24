@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import org.hibernate.proxy.HibernateProxy;
+
 import com.qualibrate.api.exceptions.ErrorCodes;
 import com.qualibrate.api.exceptions.UnSupportedFormatException;
 
@@ -52,6 +54,7 @@ public class EntityToDtoTransformer<E extends Entity, D extends Dto> implements 
      * @throws NoSuchFieldException
      * @throws SecurityException
      */
+    @SuppressWarnings("unchecked")
     private void copyProperties(E e, D d) throws SecurityException, IllegalArgumentException, IllegalAccessException {
         Field[] destinationFields = d.getClass().getDeclaredFields();
         Arrays.stream(destinationFields).map(destinationField -> {
@@ -59,12 +62,16 @@ public class EntityToDtoTransformer<E extends Entity, D extends Dto> implements 
                     if (!destinationField.isAccessible()) {
                         destinationField.setAccessible(true);
                     }
-                    Field sourceField = e.getClass().getDeclaredField(destinationField.getName());
+                    E copy = e;
+                    if (copy instanceof HibernateProxy) {
+                        copy = (E) ((HibernateProxy) copy).getHibernateLazyInitializer().getImplementation();
+                    }
+                    Field sourceField = copy.getClass().getDeclaredField(destinationField.getName());
                     if (sourceField != null) {
                         if (!sourceField.isAccessible()) {
                             sourceField.setAccessible(true);
                         }
-                        destinationField.set(d, sourceField.get(e));
+                        destinationField.set(d, sourceField.get(copy));
                     }
                 } catch (IllegalAccessException | NoSuchFieldException ex) {
                     log.warn("Skip property. since it does not exist in source object");

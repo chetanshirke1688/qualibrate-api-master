@@ -25,6 +25,7 @@ import lombok.NoArgsConstructor;
 public class ProjectRecord implements com.qualibrate.api.commons.transformer.Entity {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
