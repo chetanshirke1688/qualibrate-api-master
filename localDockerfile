@@ -1,5 +1,6 @@
 FROM java:8u72-jre
 COPY *.jar /dockerapi/qualibrate-api-challange-1.0.0.jar
 ENTRYPOINT ["java"]
-CMD ["-jar", "/dockerapi/qualibrate-api-challange-1.0.0.jar"]
+ENV SPRING_PROFILES_ACTIVE=test
+CMD ["-jar", "/dockerapi/qualibrate-api-challange-1.0.0.jar", "--spring.cloud.config.enabled=false"]
 EXPOSE 8080

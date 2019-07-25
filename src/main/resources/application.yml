@@ -3,7 +3,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://qualibrate.db.com:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: "password"
     validation-query: SELECT 1

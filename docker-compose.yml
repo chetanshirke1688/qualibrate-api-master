@@ -1,0 +1,77 @@
+version: '3'
+
+networks:
+  qualibrate:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.3.0.0/16
+          
+
+
+services: 
+  api-doc-ngnix:
+    build:
+      context: .
+      dockerfile: localDockerfile
+    ports:
+      - 8085:8086
+    networks:
+      qualibrate:
+        aliases:
+          - qualibrate-api.com
+
+  qualibrate-rest-api:
+    build:
+      context: .
+      dockerfile: localDockerfile
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+      restart_policy:
+        condition: on-failure
+    links:
+      - "docker-mysql:dbHost"
+    ports:
+      - 8080:8099
+    environment:
+      - DBHOST=qualibrate.db.com
+      - WAIT_FOR_DB=5
+    networks:
+      qualibrate:
+        aliases:
+          - qualibrate.db.com
+      
+  docker-mysql:
+    image: mysql:5.7.21
+    hostname: docker-mysql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 400M
+      restart_policy:
+        condition: on-failure    
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=password
+    networks:
+      qualibrate:
+        aliases:
+          - qualibrate.db.com
+  portainer:
+    container_name: qualibrate-monitor
+    image: portainer/portainer
+    restart: always
+    ports:
+     - '9000:9099'
+    volumes: 
+     - '/var/run/docker.sock:/var/run/docker.sock'
+    
+    networks:
+      qualibrate:
+        aliases:
+          - portainer.qualibrate.com
+ 
