@@ -31,6 +31,9 @@ public class GlobalCorsMappings extends WebMvcConfigurerAdapter {
         log.debug("Configured origins--" + origins);
         System.out.println("Configured Origins " + origins);
         registry.addMapping("/api/**")
-                .allowedOrigins(rawOrigins);
+                .allowedOrigins(rawOrigins)
+                .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
+                "Access-Control-Request-Headers")
+                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials");
     }
 }

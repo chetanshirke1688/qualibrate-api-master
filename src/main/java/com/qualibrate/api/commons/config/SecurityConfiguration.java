@@ -3,9 +3,11 @@ package com.qualibrate.api.commons.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,6 +32,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Value("${secure.admin.password}")
     private String adminPassword;
+
+    @Value("${allowed.origins}")
+    private String rawOrigins;
+
+    @Autowired
+    private Environment environment;
 
     public SecurityConfiguration() {
         super(true);
@@ -77,9 +85,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        String origins = environment.getProperty("allowed.origins");
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
+        config.addAllowedOrigin(origins);
         config.addAllowedHeader("*");
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("HEAD");
@@ -88,8 +97,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         config.addAllowedMethod("POST");
         config.addAllowedMethod("DELETE");
         config.addAllowedMethod("PATCH");
+        config.addAllowedHeader("Content-Type");
+        config.addAllowedHeader("X-Requested-With");
+        config.addAllowedHeader("accept");
+        config.addAllowedHeader("Origin");
+        config.addAllowedHeader("Access-Control-Request-Method");
+        config.addAllowedHeader("Access-Control-Request-Method");
+        config.addExposedHeader("Access-Control-Allow-Origin");
+        config.addExposedHeader("Access-Control-Allow-Credentials");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+        source.registerCorsConfiguration(rawOrigins, config);
         return source;
     }
 
