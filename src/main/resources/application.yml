@@ -3,7 +3,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://qualibrate.db.com:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://qualibrate.db.com:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CEST
     username: root
     password: "password"
     validation-query: SELECT 1
@@ -30,7 +30,7 @@ secure.admin.password: $2a$10$/zJC9bACEqHYWbvNO.WhBODK5CJIWBKxSiZVu/UJEgBWHSZ0dS
 ---
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CEST
   profiles: production
 uploads: 
   directory: s3://test/uploads
@@ -39,7 +39,7 @@ liquibase:
 ---
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/qualibrate?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CEST
   profiles: local
 liquibase:
   contexts: local
