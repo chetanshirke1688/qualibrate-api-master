@@ -1,4 +1,5 @@
-<h2 id="qualibrate-java-api">Qualibrate Java API</h2>
+[![Build Status](https://travis-ci.org/chetanshirke1688/qualibrate-api-master.svg?branch=master)](https://travis-ci.org/https://travis-ci.org/chetanshirke1688/qualibrate-api-master)
+<h2 id="qualibrate-java-api">Qualibrate Java API</h2
 <p>This project is implementation of python based qualibrate APIs. This project covers following 3 entities.</p>
 <ul>
 <li>User Entity</li>
