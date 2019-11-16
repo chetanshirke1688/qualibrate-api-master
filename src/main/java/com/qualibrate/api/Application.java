@@ -19,6 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.qualibrate.api.*")
 public class Application {
     public static void main(String[] args) {
+        System.out.println("Launching Application...");
         SpringApplication.run(Application.class, args);
     }
 }
